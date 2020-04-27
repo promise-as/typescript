@@ -173,8 +173,56 @@
 
 */
 
-// 3.5 函数重载
+// 3.5 ts 函数重载
 
-  // java 中方法的重载：重载指的是两个或者两个以上同名函数，但他们的参数不一样，这时会出现重载的情况
+// java 中方法的重载：重载指的是两个或者两个以上同名函数，但他们的参数不一样，这时会出现重载的情况
 
-  // typescript 中的重载：通过为同一个函数提供多个函数类型定义来试下多种功能的目的。
+// typescript 中的重载：通过为同一个函数提供多个函数类型定义来试下多种功能的目的。
+
+// ts 为了兼容 es5 以及 es6 重载的写法和 java 中有区别
+
+// es5 中出现同名方法，下面的会替换上面的方法
+/*
+  function css(config) {
+
+  }
+  function css(config, value) {
+
+  }
+*/
+
+// ts 中的重载
+function getInfo(name: string): string;
+
+function getInfo(age: number): string;
+
+function getInfo(str: any): any {
+
+  if (typeof str === 'string') {
+
+    return '我叫：' + str;
+
+  } else {
+
+    return '我的年龄是：' + str;
+  }
+}
+
+// console.log(getInfo('张三')); // 正确
+
+// console.log(getInfo(20)); // 正确
+
+// console.log(getInfo(true)); // 错误写法
+
+
+// 3.6、箭头函数 es6
+
+// this 指向的问题 箭头函数里面的 this 指向上下文
+
+// setTimeout(function(){
+//   console.log('run');
+// }, 1000)
+
+setTimeout(() => {
+  console.log('run');
+}, 1000)
