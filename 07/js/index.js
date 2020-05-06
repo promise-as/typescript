@@ -3,8 +3,9 @@
 // function getData(value: string): string {
 //   return value;
 // }
-var setData = function (value) {
+function getData(value) {
     return value;
-};
-console.log(('张三'));
-console.log((111)); // 错误写法
+}
+var myGetData = getData;
+console.log(myGetData('20'));
+// console.log(myGetData(20)); // 错误写法

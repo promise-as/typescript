@@ -121,20 +121,22 @@
   interface ConfigFn {
     <T>(value: T): T;
   }
-  var setData: ConfigFn = function <T>(value: T): T {
+  var getData: ConfigFn = function <T>(value: T): T {
     return value;
   }
-  console.log(<string>('张三'));
-  // console.log(<string>(111)); // 错误写法
+  console.log(getData<string>('张三')); 
+  // console.log(getData<string>(123)); // 错误
 */
 
 
-// 泛型接口（第一种）
-interface ConfigFn {
-  <T>(value: T): T;
+// 泛型接口（第二种）
+interface ConfigFn<T> {
+  (value: T): T;
 }
-var setData: ConfigFn = function <T>(value: T): T {
+function getData<T>(value: T): T{
   return value;
 }
-console.log(<string>('张三'));
-console.log(<string>(111)); // 错误写法
+var myGetData: ConfigFn<string> = getData;
+console.log(myGetData('20'));
+
+// console.log(myGetData(20)); // 错误写法
